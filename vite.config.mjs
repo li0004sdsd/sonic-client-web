@@ -1,15 +1,20 @@
+// vite.config.mjs
 import { defineConfig } from 'vite';
-import { join } from 'path';
 import vue from '@vitejs/plugin-vue';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
-// https://vitejs.dev/config/
+// 构造 __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 export default defineConfig({
   plugins: [vue()],
   server: {
     port: 3002,
   },
   build: {
-    chunkSizeWarningLimit: 600, // 设置警告阈值为600KiB
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
         manualChunks(id) {
